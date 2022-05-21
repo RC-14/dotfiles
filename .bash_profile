@@ -1,3 +1,5 @@
+clear
+
 # brew - Add brew paths to ${PATH} ?
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
