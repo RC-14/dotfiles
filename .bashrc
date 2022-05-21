@@ -109,7 +109,7 @@ shopt -s histappend
 # Custom
 ###############################################################################
 
-export PATH="${PATH}:/home/rc-14/git-repos/scripts"
+export PATH="${HOME}/git-repos/scripts/:${PATH}"
 
 function fcd() {
 	DIR=$(selectDir $@)
@@ -130,7 +130,12 @@ function nf() {
 	clear
 	
 	# Show only minimal information to make neofetch faster
-	neofetch --disable title model uptime packages resolution theme icons term gpu --color_blocks off
+	neofetch --disable title model uptime packages resolution theme icons term gpu de wm wm_theme --color_blocks off
+
+	# Return 0 if uname -s is Darwin
+	if [[ $(uname -s) == "Darwin" ]]; then
+		return 0
+	fi
 
 	# Check if we finished booting (systemd-analyze will fail if not)
 	systemd-analyze time > /dev/null

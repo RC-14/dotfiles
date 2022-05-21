@@ -1,9 +1,3 @@
-# On MacOS the shell starts with the last login time printed at the top - which I don't care about
-clear
-
-# If ~/.bashrc exists source it
-test -e "${HOME}/.bashrc" && source "${HOME}/.bashrc"
-
 # brew - Add brew paths to ${PATH} ?
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -25,3 +19,6 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 
 # MacOS - Disable bash deprecation warning
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# If ~/.bashrc exists source it
+test -e "${HOME}/.bashrc" && source "${HOME}/.bashrc"
