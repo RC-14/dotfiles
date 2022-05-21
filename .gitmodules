@@ -1,0 +1,3 @@
+[submodule "git-repos/scripts"]
+	path = git-repos/scripts
+	url = https://github.com/RC-14/scripts.git
