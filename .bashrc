@@ -182,5 +182,3 @@ alias sl="sl; nf"
 bind -x '"\e ":"fcd && kill -INT $$")'
 # Bind nf to ALT+C
 bind -x '"\ec":"nf"'
-
-nf
