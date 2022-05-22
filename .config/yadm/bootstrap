@@ -5,6 +5,9 @@ system_type=$(uname -s)
 # Make sure we are in ${HOME}
 cd "${HOME}"
 
+echo ">>> Init submodules"
+yadm submodule update --recursive --init
+
 # Check if we are on Linux
 if [[ "${system_type}" = "Linux" ]]; then
 
@@ -13,9 +16,6 @@ if [[ "${system_type}" = "Linux" ]]; then
 	chsh -s /bin/bash "${USER}"
 
 fi
-
-echo "Init submodules"
-yadm submodule update --recursive --init
 
 # Check if we are on a Mac
 if [[ "$system_type" = "Darwin" ]]; then
@@ -62,3 +62,12 @@ if [[ "$system_type" = "Darwin" ]]; then
 		defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true >/dev/null 2>&1
 	fi
 fi
+
+# Done!
+echo "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
+echo "┃                                          ┃"
+echo "┃  ✔  All done!                            ┃"
+echo "┃                                          ┃"
+echo "┃  Please restart your terminal session.   ┃"
+echo "┃                                          ┃"
+echo "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
