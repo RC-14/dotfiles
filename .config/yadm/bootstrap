@@ -13,21 +13,26 @@ if [ "$system_type" = "Darwin" ]; then
 
 	# install homebrew if it's missing
 	if ! command -v brew >/dev/null 2>&1; then
-		echo "Installing homebrew"
+		echo ">>> Installing homebrew..."
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 	fi
 
-	# install all the things
+	# install brew packages
 	if [ -f "$HOME/.Brewfile" ]; then
-		echo "Updating homebrew bundle"
+		echo ">>> Applying .Brewfile..."
 		brew bundle install --global
 	fi
 
 	# Set custom iTerm2 config path
 	if [ -d "$HOME/.iterm2" ]; then
-		echo ">>> Setting iTerm prefs directory.."
+		echo ">>> Setting iTerm prefs directory..."
 		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
 		defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 	fi
+fi
 
+# Set shell to bash
+if [ "$SHELL" != "/bin/bash" ]; then
+	echo ">>> Setting shell to bash..."
+	chsh -s /bin/bash
 fi
