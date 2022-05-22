@@ -1,38 +1,57 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 system_type=$(uname -s)
 
 # Make sure we are in ${HOME}
-cd "$HOME"
+cd "${HOME}"
+
+# Set shell to bash
+if [[ "${SHELL}" != "/bin/bash" ]]; then
+	echo ">>> Setting shell to bash..."
+	chsh -s /bin/bash ${USER}
+fi
 
 echo "Init submodules"
 yadm submodule update --recursive --init
 
 # Check if we are on a Mac
-if [ "$system_type" = "Darwin" ]; then
+if [[ "$system_type" = "Darwin" ]]; then
 
-	# install homebrew if it's missing
+	# Make sure we have homebrew
 	if ! command -v brew >/dev/null 2>&1; then
-		echo ">>> Installing homebrew..."
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		echo "ERROR: Homebrew is not installed. Please install it first."
+		exit 1
 	fi
 
+	# Make sure $HOMEBREW_PREFIX is Set
+	HOMEBREW_PREFIX="$(brew --prefix)"
+
 	# install brew packages
-	if [ -f "$HOME/.Brewfile" ]; then
+	if [[ -f "${HOME}/.Brewfile" ]]; then
 		echo ">>> Applying .Brewfile..."
 		brew bundle install --global
 	fi
 
-	# Set custom iTerm2 config path
-	if [ -d "$HOME/.iterm2" ]; then
-		echo ">>> Setting iTerm prefs directory..."
-		defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
-		defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
-	fi
-fi
+	# Make lists of installed packages
+	INSTALLED_FORMULA=$(brew list -1 --formula)
+	INSTALLED_CASK=$(brew list -1 --cask)
 
-# Set shell to bash
-if [ "$SHELL" != "/bin/bash" ]; then
-	echo ">>> Setting shell to bash..."
-	chsh -s /bin/bash
+	# Change default shell to bash (homebrew bash)
+	if [[ ${INSTALLED_FORMULA} =~ "bash" ]]; then
+		echo ">>> Setting shell to ${HOMEBREW_PREFIX}/bin/bash..."
+		sudo chsh -s "${HOMEBREW_PREFIX}/bin/bash" ${USER} >/dev/null 2>&1
+	fi
+
+	# Link bash-completion
+	if [[ ${INSTALLED_FORMULA} =~ "bash-completion" ]]; then
+		echo ">>> Linking bash-completion..."
+		brew completions link >/dev/null 2>&1
+	fi
+
+	# Set custom iTerm2 config path
+	if [[ ${INSTALLED_CASK} =~ "iterm2" ]]; then
+		echo ">>> Setting iTerm prefs directory..."
+		defaults write com.googlecode.iterm2 PrefsCustomFolder "${HOME}/.iterm2" >/dev/null 2>&1
+		defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true >/dev/null 2>&1
+	fi
 fi

@@ -4,8 +4,8 @@ tap "homebrew/cask-fonts"
 tap "homebrew/core"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Programmable completion for Bash 3.2
-brew "bash-completion"
+# Programmable completion for Bash 4.2+
+brew "bash-completion@2", link: false
 # Emacs dependency management
 brew "cask"
 # Command-line fuzzy finder written in Go
@@ -30,6 +30,8 @@ brew "neovim"
 brew "node@16"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
 # Yet Another Dotfiles Manager
 brew "yadm"
 # Tool to customize input devices and automate computer systems
