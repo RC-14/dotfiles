@@ -1,7 +1,7 @@
 fullscreen
 
 # Use GPU-accelerated video output by default
-vo=gpu
+vo=libmpv
 # Don't use hardware video decoding
 hwdec=yes
 
