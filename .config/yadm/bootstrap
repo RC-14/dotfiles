@@ -41,8 +41,12 @@ if [[ "$system_type" = "Darwin" ]]; then
 
 	# Change default shell to bash (homebrew bash)
 	if [[ ${INSTALLED_FORMULA} =~ "bash" ]]; then
-		echo ">>> Setting shell to ${HOMEBREW_PREFIX}/bin/bash..."
+		echo ">>> Setting shell to \"${HOMEBREW_PREFIX}/bin/bash\" ..."
 		sudo chsh -s "${HOMEBREW_PREFIX}/bin/bash" ${USER} >/dev/null 2>&1
+	else
+		echo ">>> WARNING: Did not find bash in installed formulae!"
+		echo ">>> Falling back to \"/bin/bash\" ..."
+		chsh -s "/bin/bash" "${USER}"
 	fi
 
 	# Link bash-completion
