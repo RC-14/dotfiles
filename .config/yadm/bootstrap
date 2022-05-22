@@ -5,10 +5,13 @@ system_type=$(uname -s)
 # Make sure we are in ${HOME}
 cd "${HOME}"
 
-# Set shell to bash
-if [[ "${SHELL}" != "/bin/bash" ]]; then
+# Check if we are on Linux
+if [[ "${system_type}" = "Linux" ]]; then
+
+	# Set the default shell to bash
 	echo ">>> Setting shell to bash..."
-	chsh -s /bin/bash ${USER}
+	chsh -s /bin/bash "${USER}"
+
 fi
 
 echo "Init submodules"
