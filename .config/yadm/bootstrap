@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 system_type=$(uname -s)
+architecture=$(uname -m)
 
 # Make sure we are in ${HOME}
 cd "${HOME}"
@@ -19,6 +20,14 @@ fi
 
 # Check if we are on a Mac
 if [[ "$system_type" = "Darwin" ]]; then
+
+	# Check if we are on an Arm device
+	if [[ architecture = "arm64" ]]; then
+
+		# Disable the delay when showing and hiding the Dock
+		defaults write com.apple.dock autohide-delay -float 0 && defaults write com.apple.dock autohide-time-modifier -float 0.4 && killall Dock
+
+	fi
 
 	# Make sure we have homebrew
 	if ! command -v brew >/dev/null 2>&1; then
