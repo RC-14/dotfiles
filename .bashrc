@@ -109,7 +109,7 @@ shopt -s histappend
 # Custom
 ###############################################################################
 
-export PATH="${HOME}/git-repos/scripts/:${PATH}"
+export PATH="${HOME}/git-repos/scripts/:${HOME}/.local/bin/:${PATH}"
 
 function fcd() {
 	DIR=$(selectDir $@)
