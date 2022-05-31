@@ -1,7 +1,9 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 tap "homebrew/core"
+tap "neonichu/formulae"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Programmable completion for Bash 4.2+
@@ -47,6 +49,8 @@ cask "font-noto-nerd-font"
 cask "github"
 # Terminal emulator as alternative to Apple's Terminal app
 cask "iterm2"
+# Minecraft launcher with native arm64 support
+cask "manymc"
 # Media player based on MPlayer and mplayer2
 cask "mpv"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -57,5 +61,9 @@ cask "qbittorrent"
 cask "signal"
 # Open-source code editor
 cask "visual-studio-code"
+# OpenJDK distribution from Azul
+cask "zulu17"
+# OpenJDK distribution from Azul
+cask "zulu8"
 mas "Bitwarden", id: 1352778147
 mas "Xcode", id: 497799835
