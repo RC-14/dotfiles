@@ -174,8 +174,9 @@ function mpvdl() {
 	return $?
 }
 
-alias c=clear
-alias nv=nvim
+alias c="clear"
+alias nv="nvim"
+alias lsd="ls ~/Downloads"
 alias sl="sl; nf"
 
 # Bind fcd to ALT+Space
