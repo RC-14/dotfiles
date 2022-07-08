@@ -115,15 +115,18 @@ function fcd() {
 	DIR=$(selectDir $@)
 
 	# Return 1 if no directory was selected
-	if [[ -z $DIR ]]; then
+	if [[ -z ${DIR} ]]; then
 		return 1
 	fi
 
 	# Change to the selected directory
-	cd $DIR
+	cd "${DIR}"
 	
 	# Print the current directory
 	printf $(pwd) 
+
+	# Add the directory change to the history
+	history -s cd "\"$(pwd)\""
 }
 
 function nf() {
