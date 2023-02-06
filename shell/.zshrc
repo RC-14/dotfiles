@@ -16,7 +16,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Protect against fork bombs
 ulimit -u 1000
 
-export PATH="${HOME}/git-repos/RC-14/scripts/:${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/github/RC-14/scripts/:${HOME}/.local/bin:${PATH}"
 
 function fcd() {
 	DIR=$(selectDir $@)
@@ -74,6 +74,7 @@ alias lsa='ls -A'
 alias lla='ll -A'
 alias grep='grep --colour=auto'
 alias nv="nvim"
+alias mpvVideodl="mpv ${HOME}/Downloads/videodl-*.mp4"
 
 # Run the autosuggestion when Control and Space get pressed
 bindkey '^ ' autosuggest-execute

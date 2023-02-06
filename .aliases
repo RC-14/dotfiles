@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-alias mpvVideodl="mpv ${HOME}/Downloads/videodl-*.mp4"
-alias lanraragi="LRR_NETWORK=http://*:80 lanraragi"
