@@ -1,22 +1,23 @@
 # Don't add commands that are prepended with a space to the history
 setopt histignorespace
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ $(tty) == "/dev/tty"* ]] && [[ $(uname -s) != "Darwin" ]]; then
+	PROMPT="[%n@%m %~]# "
+else
+	# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+	# Initialization code that may require console input (password prompts, [y/n]
+	# confirmations, etc.) must go above this block; everything else may go below.
+	if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+		source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+	fi
+
+	source ~/github/romkatv/powerlevel10k/powerlevel10k.zsh-theme
+
+	# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
 
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Protect against fork bombs
-ulimit -u 1000
-
-export PATH="${HOME}/github/RC-14/scripts/:${HOME}/.local/bin:${PATH}"
+export PATH="${HOME}/github/RC-14/scripts/:${HOME}/.local/bin/:${PATH}"
 
 function fcd() {
 	DIR=$(selectDir $@)
