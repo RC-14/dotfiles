@@ -165,9 +165,6 @@ exec_always --no-startup-id autotiling
 ## Window handling
 ###############################################################################################
 
-# switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
-
 # Open specific applications in floating mode, with different border, etc.
 for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Pavucontrol"] floating enable
@@ -268,6 +265,6 @@ bar {
 		active_workspace	#200000 #353836 #FDF6E3
 		inactive_workspace	#200000 #222D31 #EEE8D5
 		binding_mode		#200000 #2C2C2C #F9FAF9
-		urgent_workspace	#200000 #222D31 #EEE8D5
+		urgent_workspace	#200000 #DD9300 #191F24
 	}
 }
