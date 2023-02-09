@@ -15,12 +15,12 @@ set $Up k
 set $Right l
 
 # Workspace names
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
 
 ###############################################################################################
 ## Options
@@ -40,24 +40,19 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 
 # Start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency -l 7 -p "" -fn sans -x 597 -y 430 -w 726
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # Start Applications
-bindsym $mod+F1 exec --no-startup-id firefox
-bindsym $mod+F2 exec --no-startup-id xfce4-terminal
-bindsym $mod+F3 exec --no-startup-id signal-desktop
-bindsym $mod+F4 exec --no-startup-id discord
-bindsym $mod+F5 exec --no-startup-id brave
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+F1 exec --no-startup-id alacritty
+bindsym $mod+F2 exec --no-startup-id firefox
 
 # Screenshot
 bindsym $mod+Print exec --no-startup-id flameshot full
 bindsym $mod+Shift+Print exec --no-startup-id flameshot gui
 
-# Start Volume Mixer
-bindsym $mod+Ctrl+m exec --no-startup-id pavucontrol
-
 # Lock screen
-bindsym $mod+9 exec --no-startup-id /home/rc-14/git-repos/scripts/lock
+bindsym $mod+9 exec --no-startup-id /home/rc-14/github/RC-14/scripts/lock
 
 # change focus
 bindsym $mod+$Left focus left
@@ -144,34 +139,27 @@ bindsym $mod+Shift+r restart
 # Open applications on specific workspaces
 assign [class="firefox"] $ws1
 assign [class="Minecraft"] $ws2
-assign [class="PolyMC"] $ws2
+assign [class="PrismLauncher"] $ws2
 assign [class="Code"] $ws2
 assign [class="Gimp"] $ws2
-assign [class="obsidian"] $ws2
-assign [class="Xfce4-terminal"] $ws3
-assign [class="discord"] $ws4
-assign [class="Signal"] $ws4
-assign [class="Brave-browser"] $ws6
+assign [class="Alacritty"] $ws3
 
 ###############################################################################################
 ## Autostart
 ###############################################################################################
 
 # Only on Login
-exec --no-startup-id autotiling
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
 exec --no-startup-id blueman-applet
-exec --no-startup-id pa-applet
-exec --no-startup-id playerctld daemon
-exec --no-startup-id deluge
 
-# Even on reload
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
+# Start XDG autostart .desktop files using dex. See also
+# https://wiki.archlinux.org/index.php/XDG_Autostart
+exec --no-startup-id dex --autostart --environment i3
+
+# Always
+exec_always --no-startup-id autotiling
 
 ###############################################################################################
 ## Window handling
@@ -180,36 +168,9 @@ exec_always --no-startup-id fix_xcursor
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-# Use tabbed layout for specific windows
-for_window [class="Signal"] layout tabbed
-
 # Open specific applications in floating mode, with different border, etc.
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
-for_window [class="Clipgrab"] floating enable
-for_window [title="File Transfer*"] floating enable
-for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
-for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
-for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
-for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
-for_window [class="Oblogout"] fullscreen enable
-for_window [class="octopi"] floating enable
-for_window [title="About Pale Moon"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
-for_window [class="Xfburn"] floating enable
 for_window [class="Minecraft"] floating enable
 
 ###############################################################################################
@@ -218,39 +179,40 @@ for_window [class="Minecraft"] floating enable
 
 # Set shut down, restart and locking features
 bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ogout, (r)eboot, (s)hutdown
+set $mode_system (e)xit, (r)eboot, (s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit logout, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+	bindsym e exit
+	#bindsym l exec --no-startup-id i3exit logout, mode "default"
+	bindsym r exec --no-startup-id i3exit reboot, mode "default"
+	bindsym s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+	# exit system mode: "Enter" or "Escape"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+	# These bindings trigger as soon as you enter the resize mode
+	# Pressing left will shrink the window’s width.
+	# Pressing right will grow the window’s width.
+	# Pressing up will shrink the window’s height.
+	# Pressing down will grow the window’s height.
+	bindsym $Left resize shrink width 10 px or 10 ppt
+	bindsym $Down resize grow height 10 px or 10 ppt
+	bindsym $Up resize shrink height 10 px or 10 ppt
+	bindsym $Right resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym $Left resize shrink width 10 px or 10 ppt
-        bindsym $Down resize grow height 10 px or 10 ppt
-        bindsym $Up resize shrink height 10 px or 10 ppt
-        bindsym $Right resize grow width 10 px or 10 ppt
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
 
-        # exit resize mode: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	# exit resize mode: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 ###############################################################################################
@@ -264,52 +226,21 @@ hide_edge_borders none
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font xft:Noto Sans 10
+font pango:NerdFont NotoSansMono, ttf-apple-emoji 10
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
-
 # Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #991111 #991111 #191F24 #440055
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #440055
-  client.unfocused        #222D31 #222D31 #EEE8D5 #440055
-  client.urgent           #222D31 #222D31 #EEE8D5 #440055
-  client.placeholder      #000000 #0c0c0c #ffffff #000000 
+# class					border  backgr. text    indic.   child_border
+client.focused			#991111 #991111 #191F24 #440055
+client.focused_inactive	#2F3D44 #2F3D44 #1ABC9C #440055
+client.unfocused		#222D31 #222D31 #EEE8D5 #440055
+client.urgent			#222D31 #222D31 #EEE8D5 #440055
+client.placeholder		#000000 #0c0c0c #ffffff #000000 
 
-  client.background       #2B2C2B
+client.background #2B2C2B
 
 ###############################################################################################
 ## Bar
@@ -324,24 +255,19 @@ bar {
 
 	modifier $mod
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
-	font xft:Noto Sans 11
 	strip_workspace_numbers no
 	strip_workspace_name no
 
-    colors {
-        background #0D0000
-        statusline #F9FAE9
-        separator  #454947
+	colors {
+		background #0D0000
+		statusline #F9FAE9
+		separator  #454947
 
-#                      border  backgr. text
-        focused_workspace  #000000 #991111 #191F24
-        active_workspace   #200000 #353836 #FDF6E3
-        inactive_workspace #200000 #222D31 #EEE8D5
-        binding_mode       #200000 #2C2C2C #F9FAF9
-        urgent_workspace   #200000 #222D31 #EEE8D5
-    }
+		#					border  backgr. text
+		focused_workspace	#000000 #991111 #191F24
+		active_workspace	#200000 #353836 #FDF6E3
+		inactive_workspace	#200000 #222D31 #EEE8D5
+		binding_mode		#200000 #2C2C2C #F9FAF9
+		urgent_workspace	#200000 #222D31 #EEE8D5
+	}
 }
