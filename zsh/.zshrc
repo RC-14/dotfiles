@@ -1,5 +1,11 @@
+# Load completion
 autoload -Uz compinit
 compinit
+
+# Save command history
+HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
+HISTSIZE=2000
+SAVEHIST=1000
 
 # Don't add commands that are prepended with a space to the history
 setopt histignorespace
