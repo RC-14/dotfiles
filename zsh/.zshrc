@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 # Don't add commands that are prepended with a space to the history
 setopt histignorespace
 
