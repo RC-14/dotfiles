@@ -140,8 +140,9 @@ bindsym $mod+Shift+r restart
 assign [class="firefox"] $ws1
 assign [class="Minecraft"] $ws2
 assign [class="PrismLauncher"] $ws2
-assign [class="Code"] $ws2
-assign [class="Gimp"] $ws2
+assign [class="Steam"] $ws2
+assign [class="Code"] $ws4
+assign [class="Gimp"] $ws4
 assign [class="Alacritty"] $ws3
 
 ###############################################################################################
@@ -180,8 +181,8 @@ set $mode_system (e)xit, (r)eboot, (s)hutdown
 mode "$mode_system" {
 	bindsym e exit
 	#bindsym l exec --no-startup-id i3exit logout, mode "default"
-	bindsym r exec --no-startup-id i3exit reboot, mode "default"
-	bindsym s exec --no-startup-id i3exit shutdown, mode "default"
+	bindsym r exec --no-startup-id "shutdown --reboot now", mode "default"
+	bindsym s exec --no-startup-id "shutdown now", mode "default"
 
 	# exit system mode: "Enter" or "Escape"
 	bindsym Return mode "default"

@@ -14,17 +14,6 @@ wireless _first_ {
     format_down = "No Connection"
 }
 
-battery 0 {
-    format = "%status %percentage"
-    format_down = "No battery"
-    status_chr = "⚡"
-    status_bat = "🔋"
-    status_unk = "?"
-    status_full = ""
-    path = "/sys/class/power_supply/BAT0/uevent"
-    low_threshold = 20
-}
-
 tztime local {
     format = "%H:%M | %d-%m-%Y"
 }
