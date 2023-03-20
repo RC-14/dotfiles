@@ -155,6 +155,7 @@ assign [class="firefox"] $ws2
 
 # Only on Login
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
