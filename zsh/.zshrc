@@ -78,6 +78,7 @@ function mpvdl() {
 	return $?
 }
 
+alias exit=" exit"
 alias ls='ls --color=auto'
 alias ll='ls -lh'
 alias lsa='ls -A'
