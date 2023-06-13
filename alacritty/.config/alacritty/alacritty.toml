@@ -1,0 +1,66 @@
+live_config_reload = true
+
+[colors]
+transparent_background_colors = true
+
+[colors.bright]
+black = "#676767"
+blue = "#6871ff"
+cyan = "#5ffdff"
+green = "#5ff967"
+magenta = "#ff76ff"
+red = "#ff6d67"
+white = "#fffefe"
+yellow = "#fefb67"
+
+[colors.normal]
+black = "#000000"
+blue = "#0225c7"
+cyan = "#00c5c7"
+green = "#00c200"
+magenta = "#c930c7"
+red = "#c91b00"
+white = "#c7c7c7"
+yellow = "#c7c400"
+
+[colors.primary]
+background = "#000000"
+foreground = "#c7c7c7"
+
+[cursor]
+thickness = 0.15
+unfocused_hollow = true
+
+[cursor.style]
+shape = "Block"
+
+[font]
+size = 11.0
+
+[font.bold]
+family = "NotoSansMono NF"
+style = "Bold"
+
+[font.bold_italic]
+family = "NotoSansMono NF"
+style = "Bold Italic"
+
+[font.italic]
+family = "NotoSansMono NF"
+style = "Italic"
+
+[font.normal]
+family = "NotoSansMono NF"
+style = "Regular"
+
+[shell]
+args = ["zsh", "--login"]
+program = "/usr/bin/env"
+
+[window]
+opacity = 0.9
+option_as_alt = "Both"
+
+[window.dimensions]
+columns = 128
+lines = 32
