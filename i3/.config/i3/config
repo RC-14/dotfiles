@@ -49,8 +49,7 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+F1 exec --no-startup-id alacritty
 bindsym $mod+F2 exec --no-startup-id firefox
-bindsym $mod+F3 exec --no-startup-id steam
-bindsym $mod+F4 exec --no-startup-id prismlauncher
+bindsym $mod+F3 exec --no-startup-id ~/github/RC-14/scripts/startGameLauncher
 
 # Screenshot
 bindsym $mod+Print exec --no-startup-id flameshot full
