@@ -152,6 +152,7 @@ assign [class="Alacritty"] $ws1
 assign [class="firefox"] $ws2
 assign [class="steam" instance="steamwebhelper"] $ws3
 assign [class="PrismLauncher"] $ws4
+assign [class="yuzu"] $ws4
 
 ###############################################################################################
 ## Autostart
