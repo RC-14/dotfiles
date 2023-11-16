@@ -150,7 +150,7 @@ bindsym $mod+Shift+r restart
 # Open applications on specific workspaces
 assign [class="Alacritty"] $ws1
 assign [class="firefox"] $ws2
-assign [class="steam"] $ws3
+assign [class="steam" instance="steamwebhelper"] $ws3
 assign [class="PrismLauncher"] $ws4
 
 ###############################################################################################
