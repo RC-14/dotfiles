@@ -48,8 +48,9 @@ function nf() {
 	
 	date "+%d.%m.%Y %H:%M:%S"
 	
-	# Show only minimal information to make neofetch faster
-	neofetch --disable title model uptime packages resolution theme icons de wm_theme --color_blocks off
+	# RIP neofetch
+	# neofetch --disable title model uptime packages resolution theme icons de wm_theme --color_blocks off
+	fastfetch
 
 	return 0
 }
