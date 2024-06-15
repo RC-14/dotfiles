@@ -95,5 +95,11 @@ bindkey -s '^[c' '^unf\r'
 # Run fcd when Option/Alt and space get pressed but prevent it from getting added to the history
 bindkey -s '^[ ' '^u fcd\r'
 
+# Arrow key navigation with command and option/alt key
+bindkey ';9D' beginning-of-line
+bindkey ';9C' end-of-line
+bindkey ';3D' backward-word
+bindkey ';3C' forward-word
+
 # Source aliases specific to this device
 [ -f "${HOME}/.aliases" ] && source "${HOME}/.aliases"
